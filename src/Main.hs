@@ -2,6 +2,8 @@ module Main where
 
 import Graphics.Gloss
 
+import Picture
+
 -- constants
 title :: String
 title = "fractal"
@@ -15,8 +17,8 @@ windowPosition = (100, 100)
 backgroundColor :: Color
 backgroundColor = black
 
--- display an empty window
+-- display a window
 main :: IO ()
 main = display (InWindow title windowSize windowPosition) 
-                backgroundColor 
-                Blank
+               backgroundColor 
+               (createPicture windowSize)
