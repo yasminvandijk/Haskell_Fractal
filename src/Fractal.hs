@@ -16,12 +16,12 @@ iter :: Int -> Int -> (Float, Float) -> (Float, Float) -> Float
 iter i maxIter z c
     = if i == maxIter
       then 1.0
-      else if magnitude z > 2
+      else if squaredLength z > 4
            then (fromIntegral i) / (fromIntegral maxIter)
            else iter (i + 1) maxIter (add (multiply z z) c) c
 
-magnitude :: (Float, Float) -> Float
-magnitude (x, y) = sqrt ((x * x) + (y * y))
+squaredLength :: (Float, Float) -> Float
+squaredLength (x, y) = ((x * x) + (y * y))
 
 multiply :: (Float, Float) -> (Float, Float) -> (Float, Float)
 multiply (x1, y1) (x2, y2) = (x, y)
