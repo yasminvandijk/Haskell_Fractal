@@ -15,7 +15,7 @@ createPicture (width, height)
                                    bitmapData
                                    cacheData
               where bitmapFormat = BitmapFormat TopToBottom PxRGBA
-                    bitmapData   = pictureBytes (createFractal (width, height))
+                    bitmapData   = pictureBytes (computeFractal (width, height))
                     cacheData    = False
 
 -- convert the fractal values to a bytestring
@@ -24,7 +24,7 @@ pictureBytes = pack . concatMap colorToByte . map floatToColor
 
 -- convert a float value to a Color
 floatToColor :: Float -> Color
-floatToColor f = makeColor f f f 1.0
+floatToColor f = makeColor (sqrt f) f (1 - sqrt f) 1.0
 
 -- convert a Color to bytes
 colorToByte :: Color -> [Word8]
